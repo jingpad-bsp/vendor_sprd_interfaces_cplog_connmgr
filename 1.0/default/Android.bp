@@ -1,0 +1,56 @@
+cc_library_shared {
+    name: "vendor.sprd.hardware.cplog_connmgr@1.0-impl",
+    relative_install_path: "hw",
+    proprietary: true,
+    srcs: [
+        "client_hdl.cpp",
+        "client_mgr.cpp",
+        "connect_cmn.cpp",
+        "ConnectControl.cpp",
+        "cp_state_hdl.cpp",
+        "cp_time_hdl.cpp",
+        "data_buf.cpp",
+        "data_proc_hdl.cpp",
+        "daemon_thread.cpp",
+        "fd_hdl.cpp",
+        "multiplexer.cpp",
+        "sched_and_service_mgr.cpp",
+        "timer_mgr.cpp"
+    ],
+    shared_libs: [
+        "libhidlbase",
+        "libhidltransport",
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libbase",
+        "libhardware",
+        "libsysutils",
+        "libdl",
+        "vendor.sprd.hardware.cplog_connmgr@1.0",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"CP_CONNECT_CTL\"",
+    ],
+}
+cc_binary {
+    proprietary: true,
+    relative_install_path: "hw",
+    name: "vendor.sprd.hardware.cplog_connmgr@1.0-service",
+    init_rc: ["vendor.sprd.hardware.cplog_connmgr@1.0-service.rc"],
+    srcs: [
+         "service.cpp",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libsysutils",
+        "libdl",
+        "libutils",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "libhidltransport",
+        "vendor.sprd.hardware.cplog_connmgr@1.0",
+    ],
+}
